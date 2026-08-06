@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Michael Johnson — Data Engineer</title>
+<meta name="description" content="Michael Johnson — Data Engineer in Chicago, IL. Production pipelines, Airflow, Snowflake, dbt.">
+<style>
+  :root {
+    --navy: #0e1c33;
+    --navy-light: #16294a;
+    --accent: #5b9dd9;
+    --text: #24303f;
+    --muted: #5b6a7c;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --line: #e3e8ef;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar {
+    width: 250px;
+    background: var(--navy);
+    color: #dbe4f0;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+
+  .sidebar img.photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .sidebar h1 {
+    font-size: 1.2rem;
+    color: #fff;
+    text-align: center;
+    letter-spacing: .02em;
+  }
+
+  .sidebar .role {
+    font-size: .85rem;
+    color: #8fa5c2;
+    margin-bottom: 1.75rem;
+    text-align: center;
+  }
+
+  nav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+  }
+
+  nav button {
+    all: unset;
+    cursor: pointer;
+    padding: .65rem 1rem;
+    border-radius: 8px;
+    font-size: .95rem;
+    color: #b9c7da;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background .15s, color .15s;
+  }
+
+  nav button:hover { background: var(--navy-light); color: #fff; }
+
+  nav button.active {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .sidebar .contact {
+    margin-top: auto;
+    font-size: .78rem;
+    color: #8fa5c2;
+    text-align: center;
+    word-break: break-word;
+    padding-top: 1.5rem;
+  }
+
+  .sidebar .contact a { color: #b9c7da; text-decoration: none; }
+  .sidebar .contact a:hover { color: #fff; text-decoration: underline; }
+
+  /* ---------- Main ---------- */
+  main {
+    flex: 1;
+    padding: 2.5rem clamp(1.25rem, 4vw, 3.5rem);
+    max-width: 900px;
+  }
+
+  section { display: none; }
+  section.visible { display: block; animation: fadeIn .25s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    color: var(--navy);
+    margin-bottom: 1.25rem;
+    padding-bottom: .5rem;
+    border-bottom: 3px solid var(--accent);
+    display: inline-block;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .card h3 { font-size: 1.05rem; color: var(--navy); }
+
+  .card .meta {
+    font-size: .85rem;
+    color: var(--muted);
+    margin-bottom: .5rem;
+  }
+
+  .card ul { padding-left: 1.2rem; }
+  .card li { margin-bottom: .4rem; font-size: .95rem; }
+  .card p { font-size: .95rem; }
+
+  .lead { font-size: 1.05rem; margin-bottom: 1.25rem; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+
+  .tag {
+    background: #e8f0f9;
+    color: #2c5a86;
+    border-radius: 999px;
+    padding: .25rem .75rem;
+    font-size: .85rem;
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 720px) {
+    body { flex-direction: column; }
+
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: static;
+      padding: 1.5rem 1rem 1rem;
+    }
+
+    .sidebar img.photo { width: 88px; height: 88px; }
+
+    nav {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .4rem;
+      margin-top: .5rem;
+    }
+
+    nav button { width: auto; padding: .45rem .85rem; font-size: .85rem; }
+
+    .sidebar .contact { display: none; }
+
+    main { padding: 1.5rem 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <img class="photo" src="agent.png" alt="Portrait of Michael Johnson">
+    <h1>Michael Johnson</h1>
+    <p class="role">Data Engineer · Chicago, IL</p>
+
+    <nav aria-label="Sections">
+      <button class="active" data-section="about">About</button>
+      <button data-section="education">Education</button>
+      <button data-section="experience">Work Experience</button>
+      <button data-section="projects">Projects</button>
+      <button data-section="skills">Skills</button>
+    </nav>
+
+    <div class="contact">
+      <a href="mailto:michael.johnson.data@example.com">michael.johnson.data@example.com</a><br>
+      <a href="https://github.com" rel="noopener">GitHub</a> ·
+      <a href="https://linkedin.com" rel="noopener">LinkedIn</a>
+    </div>
+  </aside>
+
+  <main>
+    <!-- About -->
+    <section id="about" class="visible">
+      <h2>About</h2>
+      <p class="lead">Data engineer with 5 years building production pipelines that move <strong>2B+ rows daily</strong> for Fortune-500 operations. Owner of 40+ Airflow DAGs with 99.7% on-time delivery across two years. Seeking an <strong>AI Forward-Deployed Engineer</strong> role.</p>
+
+      <div class="card">
+        <h3>Certifications</h3>
+        <ul>
+          <li>SnowPro Core Certification — Snowflake (2023)</li>
+          <li>dbt Analytics Engineering Certification — dbt Labs (2022)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Leadership &amp; Community</h3>
+        <ul>
+          <li>Organizer, Chicago Data Engineering Meetup (2023 – present, ~200 members)</li>
+          <li>Mentor, ChiHackNight civic data volunteers</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <h2>Education</h2>
+
+      <div class="card">
+        <h3>M.S. Applied Data Science — University of Chicago</h3>
+        <p class="meta">2021</p>
+        <ul>
+          <li>Coursework: distributed systems, statistical inference, data architecture, visualization</li>
+          <li>Capstone: real-time transit-delay pipeline over CTA open data feeds (basis of the CTA Delay Tracker project)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>B.S. Computer Science — Northwestern University</h3>
+        <p class="meta">2019</p>
+        <ul>
+          <li>Coursework: databases, algorithms, operating systems · Dean's List (4 quarters)</li>
+          <li>Teaching assistant, Intro to Databases (2 quarters)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Lane Tech College Prep High School — Chicago, IL</h3>
+        <p class="meta">2015</p>
+      </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section id="experience">
+      <h2>Work Experience</h2>
+
+      <div class="card">
+        <h3>Data Engineer — United Airlines</h3>
+        <p class="meta">Chicago, IL · 2021 – present</p>
+        <ul>
+          <li>Own 40+ daily Airflow ETL pipelines feeding the network-operations warehouse (Snowflake, ~2.1B rows/day) used by planning teams across 4 departments</li>
+          <li>Built the weather-delay data mart joining FAA feeds with O'Hare ground operations — cut on-time-analytics data freshness from 12 hours to 45 minutes</li>
+          <li>Prepared and cleaned training datasets consumed by the forecasting team (150+ curated tables, documented lineage)</li>
+          <li>Cut failed pipeline runs 54% in one year as on-call reliability owner; introduced data-quality checks that now gate every production load</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Data Analyst — Allstate</h3>
+        <p class="meta">Chicago, IL · 2019 – 2021</p>
+        <ul>
+          <li>Wrote SQL transformations behind quarterly claims dashboards used by leadership in 3 regions (Tableau, ~40M claims records)</li>
+          <li>Automated a manual weekly reporting process end-to-end, saving the team ~8 hours per week</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Data Engineering Intern — Grubhub</h3>
+        <p class="meta">Chicago, IL · Summer 2018</p>
+        <ul>
+          <li>Migrated 12 legacy CSV order feeds into the central warehouse; wrote validation checks that caught ~2K malformed records/week</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2>Projects</h2>
+
+      <div class="card">
+        <h3>CTA Delay Tracker</h3>
+        <p>Nightly pipeline ingesting Chicago Transit Authority open data into a public dashboard; 18 months of uptime, 400+ daily users.</p>
+      </div>
+
+      <div class="card">
+        <h3>O'Hare Weather Warehouse</h3>
+        <p>Personal Snowflake warehouse joining NOAA history with flight-status feeds; powers the delay heat-maps used in the CTA project.</p>
+      </div>
+
+      <div class="card">
+        <h3>Lakefront Sensor Watch</h3>
+        <p>dbt models over Chicago Park District beach-sensor open data; daily water-quality tables feeding a public Tableau dashboard (3 summers of history).</p>
+      </div>
+
+      <div class="card">
+        <h3>Divvy Rides ETL</h3>
+        <p>Monthly batch pipeline modeling Chicago bike-share trips from Divvy open data; 40M+ rows with tested dbt models and automated freshness checks.</p>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2>Skills</h2>
+
+      <div class="card">
+        <h3>Transformation</h3>
+        <div class="tags">
+          <span class="tag">SQL (advanced)</span>
+          <span class="tag">dbt</span>
+          <span class="tag">Dimensional modeling</span>
+          <span class="tag">Stored procedures</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Orchestration &amp; CDC</h3>
+        <div class="tags">
+          <span class="tag">Airflow</span>
+          <span class="tag">Kafka-based CDC pipelines</span>
+          <span class="tag">Incremental loads</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Storage</h3>
+        <div class="tags">
+          <span class="tag">Snowflake</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Object storage</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Observability &amp; BI</h3>
+        <div class="tags">
+          <span class="tag">Data-quality gates</span>
+          <span class="tag">Lineage docs</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Excel</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<script>
+  const buttons = document.querySelectorAll('nav button');
+  const sections = document.querySelectorAll('main section');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      sections.forEach(s => s.classList.toggle('visible', s.id === btn.dataset.section));
+    });
+  });
+</script>
+
+</body>
+</html>
